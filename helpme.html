@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>راهنمای جادویی | MagicTunnel Help</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0c1222 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Vazirmatn', Tahoma, sans-serif;
+            color: #eef4ff;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* glassmorphic container */
+        .glass-card {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(18, 25, 45, 0.55);
+            backdrop-filter: blur(14px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(156, 123, 255, 0.25);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(110, 100, 200, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* header area with language toggle */
+        .lang-bar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem 2rem;
+            background: rgba(10, 15, 30, 0.6);
+            border-bottom: 1px solid rgba(120, 100, 220, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .toggle-lang {
+            background: linear-gradient(125deg, #2c1e4a, #1a2c3a);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #d9e2ff;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            background-color: rgba(80, 70, 160, 0.4);
+            border: 1px solid rgba(170, 140, 255, 0.5);
+        }
+
+        .toggle-lang:hover {
+            background: linear-gradient(125deg, #5e3f9e, #2d4f6e);
+            color: white;
+            border-color: #ba9cff;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        /* main content */
+        .help-content {
+            padding: 2rem 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            background: linear-gradient(135deg, #cdffd8, #b694ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .sub {
+            color: #9aaed0;
+            border-right: 3px solid #7e6bdf;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            background: rgba(12, 18, 32, 0.55);
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(110, 180, 150, 0.3);
+            transition: 0.2s;
+            backdrop-filter: blur(5px);
+        }
+
+        .section:hover {
+            border-color: #83c5a7;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: linear-gradient(120deg, #b9f3cf, #c2a5ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-right: 4px solid #7fe0b0;
+            padding-right: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(145deg, #182435, #101a2c);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            color: #bbe6ff;
+            border: 1px solid #2e4d6e;
+            font-weight: 500;
+        }
+
+        code {
+            background: #0f1a24;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #e2caff;
+            font-family: monospace;
+        }
+
+        .step-list {
+            list-style-type: none;
+            padding-right: 1rem;
+        }
+
+        .step-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-right: 1.8rem;
+        }
+
+        .step-list li::before {
+            content: "✨";
+            position: absolute;
+            right: -0.2rem;
+            top: 0;
+            color: #74e0b6;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: rgba(90, 70, 150, 0.25);
+            border-right: 4px solid #a779ff;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        .badge {
+            background: #2e7d64;
+            color: white;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        hr {
+            border-color: rgba(120, 200, 160, 0.3);
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* english direction */
+        body.en {
+            direction: ltr;
+            text-align: left;
+        }
+        body.en .section h2 {
+            border-left: 4px solid #7fe0b0;
+            border-right: none;
+            padding-left: 1rem;
+            padding-right: 0;
+        }
+        body.en .step-list li::before {
+            right: auto;
+            left: -0.2rem;
+        }
+        body.en .step-list li {
+            padding-left: 1.8rem;
+            padding-right: 0;
+        }
+        body.en .sub {
+            border-left: 3px solid #7e6bdf;
+            border-right: none;
+            padding-left: 1rem;
+            padding-right: 0;
+        }
+
+        @media (max-width: 720px) {
+            body { padding: 1rem; }
+            .help-content { padding: 1.2rem; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body dir="rtl">
+<div class="glass-card">
+    <div class="lang-bar">
+        <button class="toggle-lang" id="langToggleBtn">🇬🇧 English / فارسی</button>
+    </div>
+    <div class="help-content" id="helpContent">
+        <!-- Persian version (default) -->
+        <div id="persianContent">
+            <h1>✨ MagicTunnel ✨</h1>
+            <div class="sub">راهنمای کامل — تونل‌زنی هوشمند با جعل SNI و دور زدن محدودیت‌های کلودفلر</div>
+
+            <div class="section">
+                <h2>🔮 این ابزار چطور کار می‌کند؟</h2>
+                <p>MagicTunnel در دو مرحله اصلی به شما کمک می‌کند تا در شرایط <strong>قطع کامل اینترنت یا مسدودیت سرورهای کلودفلر</strong>، دوباره به کانفیگ‌های Worker خود متصل شوید.</p>
+                <ul class="step-list">
+                    <li><strong>مرحله ۱ – اسکن دامنه تمیز کلودفلر:</strong> برنامه دامنه‌های لیست شده را بررسی می‌کند و دامنه‌هایی که به سرورهای کلودفلر وصل می‌شوند (با کمترین زمان پاسخ) را پیدا می‌کند. نتیجه در فایل <code>CheckedOk.txt</code> ذخیره می‌شود.</li>
+                    <li><strong>مرحله ۲ – تونل جعل SNI (Spoofing):</strong> با استفاده از دامنه تمیز به‌عنوان <strong>FAKE_SNI</strong>، یک تونل محلی روی سیستم شما ایجاد می‌کند. این تونل درخواست‌های شما را از پشت دامنه معتبر کلودفلر ارسال می‌کند و تحریم‌های شبکه را دور می‌زند.</li>
+                </ul>
+                <div class="note">
+                    💡 <strong>نکته فنی:</strong> کلودفلر بر اساس SNI (Server Name Indication) تصمیم می‌گیرد که درخواست را به کدام سایت هدایت کند. با جعل SNI به یک دامنه تمیز (که مسدود نیست)، اتصال شما از فیلتر عبور می‌کند و سپس ترافیک واقعی (کانفیگ Worker) از داخل تونل عبور داده می‌شود.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎭 FAKE_SNI چیست و چرا مهم است؟</h2>
+                <p><strong class="highlight">FAKE_SNI</strong> همان دامنه تمیز و پاسخگویی است که در مرحله اول پیدا کرده‌اید. این دامنه مستقیماً به سرور کلودفلر متصل می‌شود و فیلترهای ایرانی/تحریم کننده آن را <strong>بلاک نکرده‌اند</strong>. تونل SNI Spoofing این دامنه را به عنوان "شناسه جعلی" به کلودفلر معرفی می‌کند، در حالی که در پشت پرده ترافیک مربوط به کانفیگ Worker (مثلاً v2ray) را منتقل می‌کند.</p>
+                <p>✅ همیشه دامنه‌ای با <strong>کمترین پینگ (ms)</strong> را انتخاب کنید تا سریع‌ترین تونل را داشته باشید. برنامه به‌طور خودکار این دامنه را در تب دوم پیشنهاد می‌دهد.</p>
+            </div>
+
+            <div class="section">
+                <h2>📘 آموزش گام‌به‌گام استفاده از کانفیگ Worker (v2rayNG / NekoBox)</h2>
+                <ol class="step-list" style="list-style-type: none;">
+                    <li><strong>۱. ساخت کانفیگ Cloudflare Worker</strong> — اگر هنوز کانفیگ ندارید، از پنل‌های آماده مثل <a href="https://github.com/bia-pain-bache/BPB-Worker-Panel" target="_blank" style="color:#c6abff;">BPB Worker Panel</a> استفاده کنید. بعد از دیپلوی، یک لینک (یا کانفیگ vless/trojan) دریافت خواهید کرد.</li>
+                    <li><strong>۲. اجرای MagicTunnel &rarr; اسکن دامنه (Step1)</strong> — دکمه START CHECK را بزنید، صبر کنید تا نتایج نمایش داده شود. بعد از اتمام، فایل <code>CheckedOk.txt</code> ساخته می‌شود و Step2 به‌طور خودکار باز می‌شود.</li>
+                    <li><strong>۳. در پنجره SNI Spoofing (Step2):</strong> از لیست کشویی بهترین دامنه را انتخاب کنید (کمترین ms). در صورت نیاز پورت و آیپی را مطابق توضیحات مقداردهی کنید (پیش‌فرض‌ها معمولاً مناسب است).</li>
+                    <li><strong>۴. Start SNI Spoofing را بزنید</strong> — فایل <code>config.json</code> در کنار <code>SNI.exe</code> ساخته می‌شود و تونل شروع به کار می‌کند (کنسول سیاه باز می‌شود).</li>
+                    <li><strong>۵. ویرایش کانفیگ Worker در v2rayNG / NekoBox:</strong> کانفیگ خود را ادیت کنید:
+                        <br>🔹 <strong>آدرس (Address)</strong> را تغییر دهید به: <code class="highlight">127.0.0.1</code>
+                        <br>🔹 <strong>پورت (Port)</strong> را برابر <code class="highlight">همان LISTEN_PORT</code> قرار دهید (پیش‌فرض <code>40442</code>).
+                        <br>🔹 سایر موارد (UUID, path, encryption) را دست نزنید.
+                    </li>
+                    <li><strong>۶. اتصال:</strong> روی کانفیگ ویرایش‌شده کلیک کنید و وصل شوید. تونل SNI Spoofing ترافیک را به Worker اصلی هدایت می‌کند و شما اینترنت آزاد خواهید داشت.</li>
+                </ol>
+                <div class="note">
+                    ⚠️ <strong>توجه مهم:</strong> اگر بعد از اتصال اینترنت کار نمی‌کند، مطمئن شوید که <code>SNI.exe</code> در حال اجراست (کنسول باز باشد) و پورت تونل با پورتی که در کانفیگ v2rayNG وارد کرده‌اید یکسان است. همچنین FAKE_SNI حتماً یکی از دامنه‌هایی باشد که در اسکن موفق بوده است.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🧩 عیب‌یابی سریع</h2>
+                <ul class="step-list">
+                    <li>❌ <strong>هیچ دامنه‌ای در CheckedOk.txt نیست:</strong> دامنه‌های بیشتری به لیست اضافه کنید یا از دامنه‌های عمومی کلودفلر مثل <code>hcaptcha.com</code> استفاده کنید.</li>
+                    <li>❌ <strong>خطا "SNI.exe not found":</strong> فایل <code>SNI.exe</code> را در کنار فایل اصلی برنامه قرار دهید.</li>
+                    <li>❌ <strong>اتصال برقرار می‌شود ولی اینترنت ندارد:</strong> کانفیگ Worker شما حتماً باید نوع <strong>VLESS یا Trojan</strong> باشد و مسیر (path) آن درست تنظیم شده باشد. از پنل‌های معتبر worker استفاده کنید.</li>
+                    <li>❌ <strong>تونل باز می‌شود اما v2rayNG خطا می‌دهد:</strong> بررسی کنید که پورت محلی در v2rayNG با مقداری که در <code>LISTEN_PORT</code> تونل تنظیم کرده‌اید یکی باشد.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>🔗 منابع مفید</h2>
+                <p>🔹 ساخت Worker پنل کامل (فارسی): <a href="https://github.com/bia-pain-bache/BPB-Worker-Panel/blob/main/README_fa.md" target="_blank" style="color:#bda0ff;">BPB-Worker-Panel</a><br>
+                🔹 مخزن اصلی پروژه و آپدیت‌ها: MagicTunnel (نسخه داخلی)</p>
+            </div>
+        </div>
+
+        <!-- English version (hidden by default) -->
+        <div id="englishContent" style="display: none;">
+            <h1>✨ MagicTunnel ✨</h1>
+            <div class="sub">Complete Guide — Intelligent SNI Spoofing Tunnel to bypass Cloudflare restrictions</div>
+
+            <div class="section">
+                <h2>🔮 How does it work?</h2>
+                <p>MagicTunnel helps you regain access to your Cloudflare Worker configs during <strong>full internet shutdown or IP blocks</strong>.</p>
+                <ul class="step-list">
+                    <li><strong>Step 1 – Scan clean Cloudflare domains:</strong> The tool tests all domains and finds responsive ones with the best latency, saves them to <code>CheckedOk.txt</code>.</li>
+                    <li><strong>Step 2 – SNI Spoofing Tunnel:</strong> Uses a clean domain as <strong>FAKE_SNI</strong> to establish a local tunnel. Your real Worker traffic is routed through this tunnel, bypassing censorship.</li>
+                </ul>
+                <div class="note">
+                    💡 <strong>Technical insight:</strong> Cloudflare relies on SNI for routing. By spoofing SNI with an unblocked domain, the firewall sees a legitimate connection while your actual payload (Worker config) travels safely inside.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎭 What is FAKE_SNI?</h2>
+                <p><strong class="highlight">FAKE_SNI</strong> is the clean, responsive domain you found in Step 1. It is not blocked and can reach Cloudflare. The SNI spoofing tunnel uses it as a “decoy” to establish the connection, then forwards your Worker traffic through that tunnel.</p>
+                <p>✅ Always pick the domain with the <strong>lowest latency (ms)</strong> for the fastest tunnel. The app automatically suggests it in Step 2.</p>
+            </div>
+
+            <div class="section">
+                <h2>📘 Step-by-step: Worker config (v2rayNG / NekoBox)</h2>
+                <ol class="step-list" style="list-style-type: none;">
+                    <li><strong>1. Create a Cloudflare Worker config</strong> — Use a ready panel like <a href="https://github.com/bia-pain-bache/BPB-Worker-Panel" target="_blank" style="color:#c6abff;">BPB Worker Panel</a> and deploy it. You'll get a VLESS/Trojan link or config.</li>
+                    <li><strong>2. Run MagicTunnel → Step 1 – Scan</strong> — Press START CHECK, wait for results. After finish, <code>CheckedOk.txt</code> is created and Step 2 will open automatically.</li>
+                    <li><strong>3. In SNI Spoofing window (Step2):</strong> pick the best domain from the dropdown (lowest ms). Keep listening host/port as default unless needed.</li>
+                    <li><strong>4. Click "START SNI SPOOFING"</strong> — <code>config.json</code> is created next to <code>SNI.exe</code> and the tunnel starts (a black console appears).</li>
+                    <li><strong>5. Edit your Worker config in v2rayNG / NekoBox:</strong>
+                        <br>🔹 Change <strong>Address</strong> to: <code class="highlight">127.0.0.1</code>
+                        <br>🔹 Change <strong>Port</strong> to the same <code class="highlight">LISTEN_PORT</code> you set (default <code>40442</code>).
+                        <br>🔹 Keep other fields (UUID, path, encryption) unchanged.
+                    </li>
+                    <li><strong>6. Connect:</strong> Tap on the edited config and connect. The SNI tunnel will route traffic to your original Worker — you'll have free internet.</li>
+                </ol>
+                <div class="note">
+                    ⚠️ <strong>Important:</strong> If you get no internet after connecting, ensure <code>SNI.exe</code> is running (console open) and the port in v2rayNG matches the tunnel's LISTEN_PORT. Also FAKE_SNI must be one of the successfully tested domains.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🧩 Quick troubleshooting</h2>
+                <ul class="step-list">
+                    <li>❌ <strong>CheckedOk.txt empty:</strong> Add more domains to the list (defaults include hcaptcha.com).</li>
+                    <li>❌ <strong>"SNI.exe not found":</strong> Place <code>SNI.exe</code> next to MagicTunnel executable.</li>
+                    <li>❌ <strong>Connected but no internet:</strong> Your Worker config must be VLESS/Trojan with correct path. Use a reliable worker panel.</li>
+                    <li>❌ <strong>Tunnel starts but v2rayNG error:</strong> Double-check that the local port in v2rayNG matches LISTEN_PORT from the tunnel config.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>🔗 Useful links</h2>
+                <p>🔹 Worker Panel setup (English/Farsi): <a href="https://github.com/bia-pain-bache/BPB-Worker-Panel" target="_blank" style="color:#bda0ff;">BPB-Worker-Panel</a><br>
+                🔹 MagicTunnel updates & source (internal)</p>
+            </div>
+        </div>
+        <footer>
+            ✨ MagicTunnel — بازیابی آزادی اینترنت در شرایط سخت | SNI Spoofing + Clean IP Detection ✨
+            نوشته شده توسط https://Github.com/mr-r0ot/MagicTunnel
+        </footer>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const persianDiv = document.getElementById('persianContent');
+        const englishDiv = document.getElementById('englishContent');
+        const toggleBtn = document.getElementById('langToggleBtn');
+        const body = document.body;
+
+        let currentLang = 'fa';   // default persian
+
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                persianDiv.style.display = 'none';
+                englishDiv.style.display = 'block';
+                body.classList.add('en');
+                body.setAttribute('dir', 'ltr');
+                toggleBtn.innerHTML = '🇮🇷 فارسی / English';
+                currentLang = 'en';
+            } else {
+                persianDiv.style.display = 'block';
+                englishDiv.style.display = 'none';
+                body.classList.remove('en');
+                body.setAttribute('dir', 'rtl');
+                toggleBtn.innerHTML = '🇬🇧 English / فارسی';
+                currentLang = 'fa';
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            if (currentLang === 'fa') setLanguage('en');
+            else setLanguage('fa');
+        });
+
+        // initial : persian (default)
+        setLanguage('fa');
+    })();
+</script>
+</body>
+</html>
